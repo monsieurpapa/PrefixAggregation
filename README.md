@@ -53,10 +53,10 @@ If a withdrawal message is received, the script prints a message indicating that
 
 ## 1.5 Terminal view of the output
 ### Example one
-![Image](prefix_aggregation.png)
+![Image](output1.png)
 
 ### Example two
-![Image](prefix_aggregation2.png)
+![Image](output2.png)
 
 
 # 2. What can this study tell us about Data Engineering ?
