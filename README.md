@@ -46,6 +46,12 @@ If an announcement message is received, the script `checks the number of prefixe
 
 If a withdrawal message is received, the script prints a message indicating that the prefix included in the message has been withdrawn.
 
+## 1.4 Terminal view of the output
+### Example one
+![Image](prefix_aggregation.png)
+
+### Example two
+![Image](prefix_aggregation2.png)
 
 
 # 2. What can this study tell us about Data Engineering ?
