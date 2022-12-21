@@ -114,7 +114,7 @@ def check_prefix_aggregation(bgp_data):
       return True
   return False
 
-# assess route stability separetly
+# Given BGP data, assess route stability separetly
 def assess_route_stability(bgp_data):
   # Initialize empty dictionaries to store the frequency of updates for each prefix
   aggregated_prefix_count = {}
