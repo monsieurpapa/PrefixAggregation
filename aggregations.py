@@ -106,12 +106,13 @@ while True:
         print("some other error?", e)
         time.sleep(30)
 
-# def check_prefix_aggregation(bgp_data):
-#   announcements = bgp_data['data']['announcements']
-#   for announcement in announcements:
-#     if len(announcement['prefixes']) > 1:
-#       return True
-#   return False
+# identify prefix aggregation separetely
+def check_prefix_aggregation(bgp_data):
+  announcements = bgp_data['data']['announcements']
+  for announcement in announcements:
+    if len(announcement['prefixes']) > 1:
+      return True
+  return False
 
 # def assess_route_stability(bgp_data):
 #   # Initialize empty dictionaries to store the frequency of updates for each prefix
