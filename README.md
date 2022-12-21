@@ -12,12 +12,11 @@ Route Aggregation (RA) also known as BGP Route Summarization is a method to mini
 ## Why does it matter ?
  - RA reduces the size of the global routing table
   - decreases routers’ workload and saves network bandwidth.
- - Benefits of BGP Route Aggregation
 
 # 1. Methodology to find out prefix aggregation that takes place?
 
 In order to identify prefix aggregation, we follow a sequential list of steps described as follows:
-## 1.1 : Understand BGP data info :
+## 1.1 : Understand BGP data info (fields & subfields):
 BGP (Border Gateway Protocol) is a routing protocol used to exchange routing and reachability information between autonomous systems (ASes) on the Internet. It is responsible for routing traffic between networks and determining the most efficient path for data to take. BGP uses a path vector routing protocol, in which each router sends its entire routing table to its neighbors. BGP routers use this information to build a routing table that describes the best path to each network.
 
 There are several types of BGP messages that are used to exchange routing and reachability information between routers. These include:
@@ -39,11 +38,11 @@ RIS Live BGP data is useful for range of tasks and applications that require acc
 
 
 ## 1.3 Implement script to identify prefix aggregation and assess stability of Aggregated/Non-aggregated routes:
-This `aggregations.py` file is a script that connects to the RIS Live BGP data stream provided by the RIPE NCC (Network Coordination Centre) and processes the data received from the stream. The script first establishes a WebSocket connection to the RIS Live stream using the websocket library, and then subscribes to all BGP updates by sending a ris_subscribe message to the stream.
+The `aggregations.py` file is a script that connects to the RIS Live BGP data stream provided by the RIPE NCC (Network Coordination Centre) and processes the data received from the stream. The script first `establishes a WebSocket connection` to the RIS Live stream using the websocket library, and then `subscribes to all BGP updates` by sending a `ris_subscribe message` to the stream.
 
-Once the script is connected to the stream and subscribed to BGP updates, it enters an infinite loop in which it waits for data to be received from the stream. When data is received, it is parsed and processed using the json library. The script looks for two types of BGP messages in the stream: announcements and withdrawals.
+Once the script is connected to the stream and subscribed to BGP updates, it enters an infinite loop in which it waits for data to be received from the stream. When data is received, it is `parsed and processed` using the json library. The script looks for `two types` of BGP messages in the stream: `announcements and withdrawals`.
 
-If an announcement message is received, the script checks the number of prefixes included in the message. If the message includes multiple prefixes, the script considers this to be an aggregated route and prints a message indicating that aggregation is happening for the given prefixes and AS path. If the message includes a single prefix, the script considers this to be an unaggregated route and prints a message indicating that no aggregation is happening for the given prefix and AS path. The script also prints the frequency of updates for each prefix, which can be used to assess the stability of the route.
+If an announcement message is received, the script `checks the number of prefixes` included in the message. If the message includes `multiple prefixes`, the script considers this to be an `aggregated route` and prints a message indicating that aggregation is happening for the given prefixes and AS path. If the message includes `a single prefix`, the script considers this to be an `unaggregated route` and prints a message indicating that no aggregation is happening for the given prefix and AS path. The script also prints the `frequency of updates` for each prefix, which can be used to `assess the stability of the route`.
 
 If a withdrawal message is received, the script prints a message indicating that the prefix included in the message has been withdrawn.
 
