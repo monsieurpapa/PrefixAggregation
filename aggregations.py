@@ -106,7 +106,7 @@ while True:
         print("some other error?", e)
         time.sleep(30)
 
-# identify prefix aggregation separetely
+# identify prefix aggregation separetly
 def check_prefix_aggregation(bgp_data):
   announcements = bgp_data['data']['announcements']
   for announcement in announcements:
@@ -114,27 +114,28 @@ def check_prefix_aggregation(bgp_data):
       return True
   return False
 
-# def assess_route_stability(bgp_data):
-#   # Initialize empty dictionaries to store the frequency of updates for each prefix
-#   aggregated_prefix_count = {}
-#   unaggregated_prefix_count = {}
+# assess route stability separetly
+def assess_route_stability(bgp_data):
+  # Initialize empty dictionaries to store the frequency of updates for each prefix
+  aggregated_prefix_count = {}
+  unaggregated_prefix_count = {}
 
-#   announcements = bgp_data['data']['announcements']
-#   for announcement in announcements:
-#     # If the announcement contains multiple prefixes, it is an aggregated route
-#     if len(announcement['prefixes']) > 1:
-#       for prefix in announcement['prefixes']:
-#         aggregated_prefix_count[prefix] = aggregated_prefix_count.get(prefix, 0) + 1
-#     # If the announcement contains a single prefix, it is an unaggregated route
-#     else:
-#       prefix = announcement['prefixes'][0]
-#       unaggregated_prefix_count[prefix] = unaggregated_prefix_count.get(prefix, 0) + 1
+  announcements = bgp_data['data']['announcements']
+  for announcement in announcements:
+    # If the announcement contains multiple prefixes, it is an aggregated route
+    if len(announcement['prefixes']) > 1:
+      for prefix in announcement['prefixes']:
+        aggregated_prefix_count[prefix] = aggregated_prefix_count.get(prefix, 0) + 1
+    # If the announcement contains a single prefix, it is an unaggregated route
+    else:
+      prefix = announcement['prefixes'][0]
+      unaggregated_prefix_count[prefix] = unaggregated_prefix_count.get(prefix, 0) + 1
 
-#   # Print the frequency of updates for each prefix
-#   print("Aggregated prefixes:")
-#   for prefix, count in aggregated_prefix_count.items():
-#     print(f"{prefix}: {count} updates")
-#   print("Unaggregated prefixes:")
-#   for prefix, count in unaggregated_prefix_count.items():
-#     print(f"{prefix}: {count} updates")
+  # Print the frequency of updates for each prefix
+  print("Aggregated prefixes:")
+  for prefix, count in aggregated_prefix_count.items():
+    print(f"{prefix}: {count} updates")
+  print("Unaggregated prefixes:")
+  for prefix, count in unaggregated_prefix_count.items():
+    print(f"{prefix}: {count} updates")
 
