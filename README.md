@@ -46,7 +46,12 @@ If an announcement message is received, the script `checks the number of prefixe
 
 If a withdrawal message is received, the script prints a message indicating that the prefix included in the message has been withdrawn.
 
-## 1.4 Terminal view of the output
+## 1.4 Execute the Script :
+- Clone the Repo using the command `git clone https://github.com/monsieurpapa/PrefixAggregation.git`
+- Change to its Directory with  `cd PrefixAggregation`
+- Execute script with `python aggregations.py`
+
+## 1.5 Terminal view of the output
 ### Example one
 ![Image](prefix_aggregation.png)
 
