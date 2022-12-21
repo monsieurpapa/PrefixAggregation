@@ -1,3 +1,5 @@
+Route Aggregation (RA) also known as BGP Route Summarization is a method to minimize the size of the routing table, announcing the whole address block received from the Regional Internet Registry (RIR) to other ASes. RA is opposite to non-aggregation routing, where individual sub-prefixes of the address block are announced to BGP peers. RA reduces the size of the global routing table, decreases routers’ workload and saves network bandwidth.
+
 You use aggregates in order to minimize the size of routing tables. Aggregation is the process that combines the characteristics of several different routes in such a way that advertisement of a single route is possible.
 
 
@@ -47,27 +49,3 @@ With CIDR, there is no notion of classes, such as class A, B, or C
 
  - monitor the performance of the routes over time. This can be done by collecting data on the routes, such as the number of times they are used, the amount of traffic they carry, and the amount of time they remain in the BGP routing table. By analyzing this data, you can get an idea of which type of route is more stable and reliable
 
-
-# WHAT CAN THE STUDY TELL US ABOUT DATA ENGINEERING
-
-The analysis of the stability of aggregated routes versus more specific routes can provide valuable information for traffic engineering. 
-By understanding which type of route is more stable and reliable,
-
--  traffic engineers can make more informed decisions about how to route traffic on a network. For example, if aggregated routes are found to be more stable, traffic engineers may choose to use them more often in order to improve the overall performance of the network. 
-
-- On the other hand, if more specific routes are found to be more stable, traffic engineers may choose to use them more often in order to provide more granular control over traffic routing. 
-
-- Ultimately, the analysis of route stability can help traffic engineers to better understand the behavior of BGP routing and make more effective decisions about how to manage traffic on a network.
-
-# ALGORITHM FOR FINDIND PREFIX AGGREGATION
-
-- bgpkit
- - call the parse and apply its arguments : URL of the MRT file, and filters in dictionary { BGP router's IP of choice and its prefix , and more}
-
- - access its elements
- - for each element  :
-    - check if the 'atomic' = 'AG'
-        - if yes :
-                - add the element to AGGREGATED_JSON object
-
-                ext install gencay.vscode-chatgpt
