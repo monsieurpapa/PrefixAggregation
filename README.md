@@ -22,7 +22,7 @@ In this case ,  the prefixes are “de-aggregated”, because the whole allocate
   
   # II. How do you then study the stability of the aggregated routes versus the more specific routes?
   Taking the example above, “41.222.196.0/22” is announced by AS37020, and but also the “more specifics”. To know the stability of the announcements, We would look over a period of time and see the changes in the “more specifics” and compare the number of changes to the /22 block. Usually,  the more specifc routes are more “noisy”, meaning they change often because the operator is doing traffic engineering. BGP always prefer “more specific” prefixes and “shorter as-paths”.
-  
+  Addtionnaly, we can compare the AS Path length and the number of withdrawals happening when an aggreagated routed is announced versus when there is no aggregation happening
 
 # 1. Methodology to find out prefix aggregation that takes place?
 
