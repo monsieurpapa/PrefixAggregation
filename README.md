@@ -6,12 +6,23 @@ Assume you have BGP data.
 
 For the first 2 points, please describe the methodology in a brief readme and provide some preliminary code.
 
-# 0. Fundamentals
+# I. How do you find out prefix aggregation that takes place?
 Route Aggregation (RA) also known as BGP Route Summarization is a method to minimize the size of the routing table, announcing the whole address block received from the Regional Internet Registry (RIR) to other ASes. RA is opposite to non-aggregation routing, where individual sub-prefixes of the address block are announced to BGP peers.
+
+RIRs allocate a resource to an operator e.g. let’s say a /20 when you get the updates from RIS, we first check the “super” prefix
+e.g. `41.222.196.0/22` is a block assigned to CELTEL (AS37020) . `whois -hwhois.afrinic.net 41.222.196.0/22` . 
+
+`41.222.196.0/22` is announced by AS3720 but, in the routing table we can see "more specific" prefixes : [Celtel (https://stat.ripe.net/ui2013/41.222.196.0%2F22#tabId=routing)] .
+In this case ,  the prefixes are “de-aggregated”, because the whole allocated block by the RIR is not announced.
+
 
 ## Why does it matter ?
  - RA reduces the size of the global routing table
   - decreases routers’ workload and saves network bandwidth.
+  
+  # II. How do you then study the stability of the aggregated routes versus the more specific routes?
+  Taking the example above, “41.222.196.0/22” is announced by AS37020, and but also the “more specifics”. To know the stability of the announcements, We would look over a period of time and see the changes in the “more specifics” and compare the number of changes to the /22 block. Usually,  the more specifc routes are more “noisy”, meaning they change often because the operator is doing traffic engineering. BGP always prefer “more specific” prefixes and “shorter as-paths”.
+  
 
 # 1. Methodology to find out prefix aggregation that takes place?
 
@@ -64,10 +75,9 @@ If a withdrawal message is received, the script prints a message indicating that
 The analysis of the stability of aggregated routes versus more specific routes can provide valuable information for traffic engineering. 
 By understanding which type of route is more stable and reliable,
 
--  traffic engineers can make more informed decisions about how to route traffic on a network. For example, if aggregated routes are found to be more stable, traffic engineers may choose to use them more often in order to improve the overall performance of the network. 
-
+-  we can identify whether Large transit providers are splitting their address space intro smaller prefixes to do traffic engineering or segregate Point of Presence .
+A previous study in 2017 shows that most of top 30 biggest ASNs do announce deaggregated prefixes : https://labs.ripe.net/author/julien_gamba/bgp-table-fragmentation-what-who/
 - On the other hand, if more specific routes are found to be more stable, traffic engineers may choose to use them more often in order to provide more granular control over traffic routing. 
 
-- Ultimately, the analysis of route stability can help traffic engineers to better understand the behavior of BGP routing and make more effective decisions about how to manage traffic on a network.
+- the analysis of route stability can help traffic engineers to better understand the behavior of BGP routing and make more effective decisions about how to manage traffic on a network.
 
-RA reduces the size of the global routing table, decreases routers’ workload and saves network bandwidth.
