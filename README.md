@@ -73,11 +73,8 @@ If a withdrawal message is received, the script prints a message indicating that
 # 2. What can this study tell us about Data Engineering ?
 
 The analysis of the stability of aggregated routes versus more specific routes can provide valuable information for traffic engineering. 
-By understanding which type of route is more stable and reliable,
 
--  we can identify whether Large transit providers are splitting their address space intro smaller prefixes to do traffic engineering or segregate Point of Presence .
-A previous study in 2017 shows that most of top 30 biggest ASNs do announce deaggregated prefixes : https://labs.ripe.net/author/julien_gamba/bgp-table-fragmentation-what-who/
-- On the other hand, if more specific routes are found to be more stable, traffic engineers may choose to use them more often in order to provide more granular control over traffic routing. 
+-  we can identify whether large transit providers are splitting their address space into smaller prefixes to do traffic engineering or separate their Points of Presence . The same can be done for large Content providers. If stability is assessed and there is willingness by ISPs to announce aggregated prefixes, the growth of the routing table can be controlled better .
 
-- the analysis of route stability can help traffic engineers to better understand the behavior of BGP routing and make more effective decisions about how to manage traffic on a network.
+- understanding the behavior of BGP routing in the aim of making more effective decisions about how to manage traffic on a network 
 
