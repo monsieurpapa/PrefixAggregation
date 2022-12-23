@@ -12,6 +12,10 @@ asn = '37020'
 aggregated_prefixes = {}
 non_aggregated_prefixes = {}
 
+# store start time
+last_periodic = time.time()
+periodic_interval = 90 # 90 seconds
+
 
 #infinite loop, in which it tries to connect to the RIPE RIS-Live stream using the websocket library.
 while True:
@@ -29,6 +33,10 @@ while True:
     try:
         for data in ws:
             # get current time
+            now = time.time()
+            if now - last_periodic > periodic_interval:
+                print("============ ============")
+                
             parsed = json.loads(data)
             #print(data)
             if parsed.get('type', None) == 'ris_error':
@@ -56,7 +64,7 @@ while True:
                             #check stability of route
                             for prefix in announcement['prefixes']:
                                 aggregated_prefix_count[prefix] = aggregated_prefix_count.get(prefix, 0) + 1
-                                # noisy_aspath[as_path] = noisy_aspath.get(as_path, 0) + 1
+                                
                             # Print the frequency of updates for each prefix
                             print("Aggregated prefixes:")
                             for prefix, count in aggregated_prefix_count.items():
@@ -78,9 +86,6 @@ while True:
                     for announcement in withdrawls:
                         for prefix in announcement['prefixes']:
                             print(f"{prefix} Withdrawn")
-#                            print("del|%s|%s" % (prefix, as_path))
-                            # noisy_prefix[prefix] = noisy_prefix.get(prefix, 0) + 1
-                            # noisy_aspath[as_path] = noisy_aspath.get(as_path, 0) + 1
 
 
     except websocket.WebSocketConnectionClosedException as e:
